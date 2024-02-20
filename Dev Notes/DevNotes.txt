@@ -1,10 +1,21 @@
 
-1. If Sass ever acts up with folloiwng error message
+1. If Sass script in package.json ever acts up with folloiwng error message
 "{
   "status": 3,
   "message": "File to read not found or unreadable: D:/HTML+CSS+JavaScript+NodeJS_src/ModernPortfolio/scss/main.scss",
   "formatted": "Internal Error: File to read not found or unreadable: D:/HTML+CSS+JavaScript+NodeJS_src/ModernPortfolio/scss/main.scss\n"   
 }"
-
 When the .scss folder/file should clearly be visible then just delete node_modules and reinstall node-sass 
 (this is the only current fix)
+|-> Workaround to this is just use the Live Sass extension for VS code
+----------------
+POTENTIAL CAUSE: theory is the initial git commit immediately after node-sass is installed displayed a message about crlf being replaced by lf
+somewhere, this lf does show up in the error message above. So maybe its git that's doing it?
+[DEBUNKED]
+PARTIAL SOLUTION:
+|->replaced node_modules/node-sass/lib/render.js with this file here: https://github.com/marcosbozzani/node-sass/blob/266861bf5761dcafd5d53d123264b965c861887c/lib/render.js
+    |-> except it crashes...ughhh
+=============================================================================================================================================================================
+==> Just going to use Live Sass extension for VS code, it works no bullshit (so far)
+  
+

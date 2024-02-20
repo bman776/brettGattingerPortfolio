@@ -1,0 +1,10 @@
+
+1. If Sass ever acts up with folloiwng error message
+"{
+  "status": 3,
+  "message": "File to read not found or unreadable: D:/HTML+CSS+JavaScript+NodeJS_src/ModernPortfolio/scss/main.scss",
+  "formatted": "Internal Error: File to read not found or unreadable: D:/HTML+CSS+JavaScript+NodeJS_src/ModernPortfolio/scss/main.scss\n"   
+}"
+
+When the .scss folder/file should clearly be visible then just delete node_modules and reinstall node-sass 
+(this is the only current fix)

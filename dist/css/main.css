@@ -1,4 +1,4 @@
-/*remember: workspace settings have sass compiling .css file to the /dist/css folder*/
+/*remember: workspace settings have sass compiling .css file to the /dist/css folder! */
 /* The '*' simply means apply to all html elements*/
 * {
   box-sizing: border-box;
@@ -17,7 +17,8 @@ body#bg-img {
   background-attachment: fixed;
   background-size: cover;
 }
-body#bg-img .overlay {
+body#bg-img:after {
+  content: "";
   position: absolute;
   top: 0;
   right: 0;

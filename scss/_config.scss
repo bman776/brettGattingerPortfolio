@@ -4,6 +4,7 @@ $show-home-image: true;
 /*remember: workspace settings have sass compiling .css file to the /dist/css folder! */
 $home-image: url(../img/background.jpg);
 $background-opacity: 0.6;
+$main-footer-height: 60px;
 
 @mixin easeOut {
     transition: all .5s ease-out;
@@ -31,8 +32,16 @@ $background-opacity: 0.6;
     }
 }
 
-//Media Query Mixins
+// Set Text Color
+@function set-text-color($color) {
+    @if (lightness($color) > 40) {
+        @return #000;
+    } @else {
+        @return #fff;
+    }
+}
 
+//Media Query Mixins
 // Media small
 @mixin mediaSm {
     //media query

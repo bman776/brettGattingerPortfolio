@@ -1,6 +1,6 @@
 @import 'config';
 @import 'menu';
-@import 'mobile';
+
 
 /* The '*' simply means apply to all html elements*/
 * {
@@ -11,7 +11,7 @@
 body {
     @include background;
     background: $primary-color;
-    color: #fff;
+    color: set-text-color($primary-color);
     height: 100%;
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -55,6 +55,9 @@ header {
 main {
     padding: 4rem;
     height: 100%;
+    min-height: calc(100vh - $main-footer-height); // sticky footer: since the height of main class is 100% its 
+                                                   // height will be 100% of the content inside it (large enough to hold 100% of it as opposed to say 80)
+                                                   // So by using calc() here for main's minimum height our css ensures footer is always placed at bottom 
 
     .icons {
         margin-top: 1rem;
@@ -70,9 +73,59 @@ main {
 
     &#home {
         overflow: hidden;
-        h1{
+        h1 {
             margin-top: 20vh;
             /*vh is viewport height on scale of 100 so 20vh is 20 of 100 view height units*/
         }
     }
 }
+
+.about-info {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-areas:
+        'bioimage bio bio'
+        'job1 job2 job3';
+    grid-template-columns: repeat(3, 1fr);
+
+    .bio-image {
+        grid-area: bioimage;
+        margin: auto;
+        border-radius: 50%;
+        border: $secondary-color 3px solid;
+    }
+    
+    .bio {
+        grid-area: bio;
+        font-size: 1.5rem;
+    }
+    
+    .job-1 {
+        grid-area: job1;
+    }
+    
+    .job-2 {
+        grid-area: job2;
+    }
+    
+    .job-3 {
+        grid-area: job3;
+    }
+    
+    .job {
+        background: lighten($primary-color, 5);
+        padding: 0.5rem;
+        border-bottom: $secondary-color 5px solid;
+    }
+}
+
+#main-footer {
+    text-align: center;
+    padding: 1rem;
+    background: darken($primary-color, 10);
+    color: set-text-color($primary-color);
+    height: $main-footer-height;
+}
+
+// run media queries after initial css
+@import 'mobile';

@@ -1,0 +1,470 @@
+/*remember: workspace settings have sass compiling .css file to the /dist/css folder! */
+.menu-btn {
+  position: absolute;
+  z-index: 3;
+  right: 35px;
+  top: 35px;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+.menu-btn .btn-line {
+  width: 28px;
+  height: 3px;
+  margin: 0 0 5px 0;
+  background: #fff;
+  transition: all 0.5s ease-out;
+}
+.menu-btn.close {
+  transform: rotate(180deg);
+}
+.menu-btn.close .btn-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-btn.close .btn-line:nth-child(2) {
+  opacity: 0;
+}
+.menu-btn.close .btn-line:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  visibility: hidden;
+  /*the &-branding evaluates to &.menu-branding, dash is replaced by outer containing class, 
+  in this case menu. Same logic for &-nav*/
+}
+.menu.show {
+  visibility: visible;
+}
+.menu-branding, .menu-nav {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  width: 50%;
+  height: 100vh;
+  overflow: hidden;
+}
+.menu-nav {
+  margin: 0;
+  padding: 0;
+  opacity: 0.8;
+  background: #373737;
+  list-style: none;
+  transition: all 0.5s ease-out;
+  transform: translate3d(0, -100%, 0);
+}
+.menu-nav.show {
+  transform: translate3d(0, 0, 0);
+}
+.menu-branding {
+  opacity: 0.97;
+  background: #444;
+  transition: all 0.5s ease-out;
+  transform: translate3d(0, 100%, 0);
+}
+.menu-branding.show {
+  transform: translate3d(0, 0, 0);
+}
+.menu-branding .portrait {
+  width: 250px;
+  height: 250px;
+  background: url("../img/portrait.jpg");
+  border-radius: 50%;
+  border: solid 3px #eece1a;
+}
+.menu .nav-item {
+  transition: all 0.5s ease-out;
+  transform: translate3d(600px, 0, 0);
+}
+.menu .nav-item.show {
+  transform: translate3d(0, 0, 0);
+}
+.menu .nav-item.current > a {
+  color: #eece1a;
+}
+.menu .nav-link {
+  display: inline-block;
+  position: relative;
+  font-size: 30px;
+  text-transform: uppercase;
+  padding: 1rem 0;
+  font-weight: 300;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.5s ease-out;
+}
+.menu .nav-link:hover {
+  color: #eece1a;
+}
+
+.nav-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.nav-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.nav-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.nav-item:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+/* The '*' simply means apply to all html elements*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #444;
+  color: #fff;
+  height: 100%;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+}
+body#bg-img {
+  background: url(../img/background.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+}
+body#bg-img:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: rgba(68, 68, 68, 0.6);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 400;
+  /*rem is multiplier of html tag's font size 
+  (defualt is 16 pixels unless set otherwise so 6rem = 16*6 = 96 pixels)*/
+}
+h1.lg-heading,
+h2.lg-heading,
+h3.lg-heading {
+  font-size: 6rem;
+}
+h1.sm-heading,
+h2.sm-heading,
+h3.sm-heading {
+  margin-bottom: 2rem;
+  padding: 0.2rgba #494949, 0.5;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+}
+
+.text-secondary {
+  color: #eece1a;
+}
+
+main {
+  padding: 4rem;
+  height: 100%;
+  min-height: calc(100vh - 60px);
+}
+main .icons {
+  margin-top: 1rem;
+}
+main .icons a {
+  padding: 0.4rem;
+}
+main .icons a:hover {
+  color: #eece1a;
+  transition: all 0.5s ease-out;
+}
+main#home {
+  overflow: hidden;
+}
+main#home h1 {
+  margin-top: 20vh;
+  /*vh is viewport height on scale of 100 so 20vh is 20 of 100 view height units*/
+}
+
+.about-info {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-areas: "bioimage bio bio" "job1 job2 job3";
+  grid-template-columns: repeat(3, 1fr);
+}
+.about-info .bio-image {
+  grid-area: bioimage;
+  margin: auto;
+  border-radius: 50%;
+  border: #eece1a 3px solid;
+}
+.about-info .bio {
+  grid-area: bio;
+  font-size: 1.5rem;
+}
+.about-info .job-1 {
+  grid-area: job1;
+}
+.about-info .job-2 {
+  grid-area: job2;
+}
+.about-info .job-3 {
+  grid-area: job3;
+}
+.about-info .job {
+  background: #515151;
+  padding: 0.5rem;
+  border-bottom: #eece1a 5px solid;
+}
+
+.projects {
+  display: grid;
+  grid-gap: 0.7rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+.projects:has(.item) .item-text h3 {
+  font-size: 1em;
+  color: #fff;
+  background-color: transparent;
+  opacity: 0.7;
+  transition: all 0.5s ease-out;
+}
+.projects:has(#item1:hover) #itemText1 h3 {
+  padding-top: 1%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  color: #eece1a;
+  background-color: #333;
+  opacity: 1;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition: all 0.5s ease-out;
+}
+.projects:has(#item2:hover) #itemText2 h3 {
+  padding-top: 1%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  color: #eece1a;
+  background-color: #333;
+  opacity: 1;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition: all 0.5s ease-out;
+}
+.projects:has(#item3:hover) #itemText3 h3 {
+  padding-top: 1%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  color: #eece1a;
+  background-color: #333;
+  opacity: 1;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition: all 0.5s ease-out;
+}
+.projects:has(#item4:hover) #itemText4 h3 {
+  padding-top: 1%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  color: #eece1a;
+  background-color: #333;
+  opacity: 1;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition: all 0.5s ease-out;
+}
+.projects:has(#item5:hover) #itemText5 h3 {
+  padding-top: 1%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  color: #eece1a;
+  background-color: #333;
+  opacity: 1;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition: all 0.5s ease-out;
+}
+.projects:has(#item6:hover) #itemText6 h3 {
+  padding-top: 1%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  color: #eece1a;
+  background-color: #333;
+  opacity: 1;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition: all 0.5s ease-out;
+}
+.projects:has(#item7:hover) #itemText7 h3 {
+  padding-top: 1%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  color: #eece1a;
+  background-color: #333;
+  opacity: 1;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition: all 0.5s ease-out;
+}
+.projects .item {
+  position: relative;
+  z-index: 0;
+}
+.projects .item-text {
+  position: absolute;
+  z-index: 1;
+  width: 97%;
+  padding-top: 2%;
+  padding-left: 3%;
+}
+.projects img {
+  transition: all 0.5s ease-out;
+  width: 100%;
+  border: 3px #fff solid;
+  opacity: 0.5;
+}
+.projects img:hover {
+  opacity: 1;
+  border-color: #eece1a;
+  transition: all 0.5s ease-out;
+}
+
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1rem;
+}
+.boxes div {
+  font-size: 2rem;
+  border: 3px #fff solid;
+  padding: 1.5rem 2.5rem;
+  margin-bottom: 3rem;
+  transition: all 0.5s ease-out;
+}
+.boxes div:hover {
+  padding: 0.5rem 1.5rem;
+  background: #eece1a;
+  color: #000;
+}
+.boxes div:hover span {
+  color: #000;
+}
+
+.btn, .btn-light, .btn-dark {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 0;
+  margin-bottom: 0.3rem;
+}
+.btn:hover, .btn-light:hover, .btn-dark:hover {
+  background: #eece1a;
+  color: #000;
+}
+
+.btn-dark {
+  background: black;
+  color: #fff;
+}
+
+.btn-light {
+  background: #c4c4c4;
+  color: #333;
+}
+
+#main-footer {
+  text-align: center;
+  padding: 1rem;
+  background: #2b2b2b;
+  color: #fff;
+  height: 60px;
+}
+
+@media screen and (min-width: 1171px) {
+  .projects {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1170px) {
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 768px) {
+  main {
+    align-items: center;
+    text-align: center;
+  }
+  main .lg-heading {
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  ul.menu-nav,
+  div.menu-branding {
+    float: none;
+    width: 100%;
+    min-height: 0;
+  }
+  ul.menu-nav.show,
+  div.menu-branding.show {
+    transform: translate3d(0, 0, 0);
+  }
+  .menu-nav {
+    height: 75vh;
+    transform: translate3d(-100%, 0, 0);
+    font-size: 24px;
+  }
+  .menu-branding {
+    height: 25vh;
+    transform: translate3d(100%, 0, 0);
+  }
+  .menu-branding .portrait {
+    background: url(../img/portrait_small.jpg);
+    width: 150px;
+    height: 150px;
+  }
+  .about-info {
+    grid-template-areas: "bioimage" "bio" "job1" "job2" "job3";
+    grid-template-columns: 1fr;
+  }
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 500px) {
+  main {
+    padding: 2rem;
+  }
+  main #home h1 {
+    margin-top: 10vh;
+  }
+  main#home h1 {
+    margin-top: 10vh;
+  }
+  .lg-heading {
+    margin-top: 1rem;
+    font-size: 5rem;
+  }
+  .projects {
+    grid-template-columns: 1fr;
+  }
+}

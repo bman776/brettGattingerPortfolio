@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "Responsive Portfolio Website",
   "main": "index.js",
+  "homepage": "https://bman776.github.io/brettGattinger.github.io",
   "scripts": {
-    "sass": "node-sass -w scss/ -o dist/css/ --recursive"
+    "sass": "node-sass -w scss/ -o dist/css/ --recursive",
+    "deploy": "gh-pages -d dist"
   },
   "author": "Brett Gattinger",
   "license": "MIT",
   "dependencies": {
+    "gh-pages": "^6.1.1",
     "node-sass": "^9.0.0"
   }
 }

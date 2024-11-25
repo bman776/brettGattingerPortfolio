@@ -39,7 +39,7 @@ h3 {
     &.sm-heading {
         margin-bottom: 2rem;
         padding: 0.2rem 1 rem;
-        background: (lighten($color: $primary-color, $amount: 2), 0.5);
+        background: rgba(lighten($color: $primary-color, $amount: 2), 0.5);
     }
 }
 

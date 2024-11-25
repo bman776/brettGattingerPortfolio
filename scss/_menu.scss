@@ -15,12 +15,11 @@
         @include easeOut;
     }
 
-    //CSS transitions very powerful for animation
     // Rotate menu button lines into X
     &.close {
         transform: rotate(180deg);
         .btn-line {
-            // Line 1 - Rotate
+            // Line 1 - Rotate and translate
             &:nth-child(1) {
                 transform: rotate(45deg) translate(5px, 5px);
             }
@@ -28,7 +27,7 @@
             &:nth-child(2) {
                 opacity: 0;
             }
-            //Line 3 - Rotate
+            //Line 3 - Rotate and translate
             &:nth-child(3) {
                 transform: rotate(-45deg) translate(7px, -6px);
             }
@@ -41,32 +40,47 @@
     position: fixed;
     top: 0;
     width: 100%;
-    visibility: hidden;
 
+    /*keep overlay menu hidden by default*/ 
+    visibility: hidden;
     &.show {
+    /*main.js toggleMenu() appends show class to menu element making it visible*/
         visibility: visible;
     }
 
-    /*the &-branding evaluates to &.menu-branding, dash is replaced by outer containing class, 
-    in this case menu. Same logic for &-nav*/
+    /*Here we're styling both menu-branding and menu-nav elements
+    (the &-branding evaluates to &.menu-branding, the space before the dash is replaced by outer containing class, 
+    in this case menu. Same logic for &-nav)*/
     &-branding, 
-    &-nav { 
-        display: flex;
+    &-nav {
+        // flexible layout for child elements 
+        display: flex;              
+        /*combines
+         flex-direction: column; (align children vertically in column)
+         and
+         flex-wrap: wrap; (allow child items to wrap to a new column if space runs out)*/
         flex-flow: column wrap;
+        //align child elements horizontally at center along cross-axis
         align-items: center;
+        //align child elements vertically at center along main axis     
         justify-content: center;
         float: left;
-        width: 50%;
+        // width set to half of parent container
+        width: 50%;     
+        // height set to 100% of viewport height
         height: 100vh;
+        // remove scrollbars (child elements should not exceed container bounds)
         overflow: hidden;
     }
 
+    // style and animate navigation portion of menu overlay
     &-nav {
         margin: 0;
         padding: 0;
         opacity: .8;
         background: darken($primary-color, 5);
-        list-style: none;
+        // remove bullet points
+        list-style: none;  
         
         // Slide in from top
         @include easeOut;
@@ -76,6 +90,7 @@
         }
     }
 
+    // style and animate the asthetic (branding) portion of menu overlay
     &-branding {
         opacity: .97;
         background: $primary-color;
@@ -88,17 +103,20 @@
         }
 
         .portrait {
-            width: 257.5px;
-            height: 257.5px;
-            background-repeat: no-repeat;
-            background: url('../img/portrait_bio.jpg');
+            //set size of portrait div
+            width: 280px;
+            height: 280px;
+            background: url('../img/portrait.jpg');
+            // ensure image covers whole div while maintaining aspect ratio
+            background-size: cover;
+            //want image to be circular
             border-radius: 50%;
             border: solid 3px $secondary-color;
         }
     }
 
+    // style and animate the nav-items contained within naviagation protion of menu overlay
     .nav-item {
-
         //slide in from right
         @include easeOut;
         transform: translate3d(600px, 0, 0);
@@ -106,13 +124,17 @@
             transform: translate3d(0, 0, 0);
         }
 
+        // color currently selected nav-item so user know which page they're currently on when accessing menu
         &.current > a {
             color: $secondary-color;
         }
     }
 
+    // style and animate the nav-item links contained in each nav-item element
     .nav-link {
+        // want to apply padding to inline nav-link elements so we add block-level behaviour 
         display: inline-block;
+        //position nav-link elements relative to nav-item parent
         position: relative;
         font-size: 30px;
         text-transform: uppercase;
@@ -120,15 +142,16 @@
         font-weight: 300;
         color: set-text-color($primary-color);
         text-decoration: none;
-        @include easeOut;
 
+
+        @include easeOut;
         &:hover {
             color: $secondary-color;
         }
     }
 }
 
-// Delay each nav item slide by 0.1 seconds
+// Delay each nav-item slide by 0.1 seconds
 @for $x from 1 through 4 {
     .nav-item:nth-child(#{$x}) {
         transition-delay: $x * 0.1s;

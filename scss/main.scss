@@ -38,18 +38,23 @@ h3 {
 
     &.sm-heading {
         margin-bottom: 2rem;
-        padding: 0.2rem 1 rem;
-        background: rgba(lighten($color: $primary-color, $amount: 2), 0.5);
+        padding: 0.2rem 1rem;
+        //background: rgba(lighten($color: $primary-color, $amount: 2), 0.6); //My 'FIX' fucked this, so fix it again
     }
 }
 
+// style settings for links
 a {
     color: #fff;
     text-decoration: none;
 }
 
 header {
-    position: fixed; 
+    /*want header element to always remain at top of screen even during scrolling
+    becuase it contains menu button that opens site nav and users should always have access to it*/
+    position: fixed;
+    /* want header to also always remain in front of other html elements even during scrolling so that
+    it doesnt accidentally get hiddne*/ 
     z-index: 2;
     width: 100%;
 }
@@ -67,9 +72,14 @@ main {
 
     .icons {
         margin-top: 1rem;
+        
+        //NEW NOV24 2024
+        padding-left: .2rem;
 
         a {
             padding: 0.4rem;
+            //Add color change effect to icons whenever cursor hovers over using :hover
+            // and a mixin (css 'function')
             &:hover {
                 color: $secondary-color;
                 @include easeOut();
@@ -77,8 +87,9 @@ main {
         }
     }
 
+    // apply additional styling to element main in index.html (it has the 'home' id)
     &#home {
-        overflow: hidden;
+        overflow: hidden; //remove scrollbars
         h1 {
             margin-top: 20vh;
             /*vh is viewport height on scale of 100 so 20vh is 20 of 100 view height units*/

@@ -7,6 +7,7 @@ $home-image: url(../img/background.jpg);
 $background-opacity: 0.6;
 $main-footer-height: 60px;
 
+// a mixin is basically like a function
 @mixin easeOut {
     transition: all .5s ease-out;
 }
@@ -19,6 +20,8 @@ $main-footer-height: 60px;
             background-size: cover;
             
             //Pseudo element, css treats this as an element despite it not being in the original html
+            // In this case this is the element that we're using to overlay the background image in main element
+            // while keeping the text clear
             &:after {
                 content:'';
                 position: absolute;
@@ -26,7 +29,7 @@ $main-footer-height: 60px;
                 right: 0;
                 width: 100%;
                 height: 100%;
-                z-index: -1;    //push behind content
+                z-index: -1;    //push behind content, we want the color being overlayed here to be behind the text so text is full color but background image is overlayed
                 background: rgba($primary-color, $background-opacity); //need rgba for opacity
             }
         }

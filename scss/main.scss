@@ -25,6 +25,11 @@ h3 {
     margin: 0;
     font-weight: 400;
 
+    /*& symbol means additional formatting applied to whatever outer element is defined in the scss here (in this case h1,2, and 3) 
+    bearing the class following the '.' (in this case lg-heading).
+    Nesting an & symbol allows us to apply any css styling alraedy defined outside the 
+    & symbol scope and then apply additional formatting to any elmenent that bears the specified class name for that element 
+    (sort of like an inheritance structure)*/
     &.lg-heading {
         font-size: 6rem;
     }
@@ -33,7 +38,8 @@ h3 {
 
     &.sm-heading {
         margin-bottom: 2rem;
-        padding: 0.2rgba(lighten($color: $primary-color, $amount: 2), 0.5);
+        padding: 0.2rem 1 rem;
+        background: (lighten($color: $primary-color, $amount: 2), 0.5);
     }
 }
 
@@ -43,7 +49,7 @@ a {
 }
 
 header {
-    position: fixed;
+    position: fixed; 
     z-index: 2;
     width: 100%;
 }

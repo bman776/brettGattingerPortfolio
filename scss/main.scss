@@ -107,6 +107,8 @@ main {
 
     .bio-image {
         grid-area: bioimage;
+        width: 70%;
+        height: 75%;
         margin: auto;
         border-radius: 50%;
         border: $secondary-color 3px solid;
@@ -115,6 +117,9 @@ main {
     .bio {
         grid-area: bio;
         font-size: 1.5rem;
+        p {
+            font-size: 1.2rem;
+        }
     }
     
     .job-1 {

@@ -48,7 +48,7 @@ $main-footer-height: 60px;
 //Media Query Mixins
 /* 
 Remember: These mixins are based on minimum and maximum screen widths of the devices accessing portfolio
-This means its possible for them to stack (a device which triggers mediaSm will also trigger mediaMd)
+This means its possible for them to stack (ex: a device which triggers mediaSm will also trigger mediaMd)
 */
 
 // Media small

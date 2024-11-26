@@ -82,7 +82,7 @@
         opacity: .8;
         background: darken($primary-color, 5);
         // remove bullet points
-        list-style: none;  
+        list-style: none;
         
         // Slide in from top
         @include easeOut;
@@ -160,9 +160,3 @@
     }
 }
 
-// Delay each nav-item exit slide by 0.1 seconds
-@for $x from 4 through 1 {
-    .nav-item:nth-child(#{$x}) {
-        transition-delay: (5 - $x - 1) * 0.1s;
-    }
-}

@@ -1,4 +1,8 @@
 /*remember: workspace settings have sass compiling .css file to the /dist/css folder! */
+/* 
+Remember: These mixins are based on minimum and maximum screen widths of the devices accessing portfolio
+This means its possible for them to stack (ex: a device which triggers mediaSm will also trigger mediaMd)
+*/
 .menu-btn {
   position: absolute;
   z-index: 3;
@@ -31,15 +35,22 @@
   position: fixed;
   top: 0;
   width: 100%;
+  /*keep overlay menu hidden by default*/
   visibility: hidden;
-  /*the &-branding evaluates to &.menu-branding, dash is replaced by outer containing class, 
-  in this case menu. Same logic for &-nav*/
+  /*Here we're styling both menu-branding and menu-nav elements
+  (the &-branding evaluates to &.menu-branding, the space before the dash is replaced by outer containing class, 
+  in this case menu. Same logic for &-nav)*/
 }
 .menu.show {
+  /*main.js toggleMenu() appends show class to menu element making it visible*/
   visibility: visible;
 }
 .menu-branding, .menu-nav {
   display: flex;
+  /*combines
+   flex-direction: column; (align children vertically in column)
+   and
+   flex-wrap: wrap; (allow child items to wrap to a new column if space runs out)*/
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
@@ -70,10 +81,10 @@
   transform: translate3d(0, 0, 0);
 }
 .menu-branding .portrait {
-  width: 257.5px;
-  height: 257.5px;
-  background-repeat: no-repeat;
-  background: url("../img/portrait_bio.jpg");
+  width: 280px;
+  height: 280px;
+  background: url("../img/portrait.jpg");
+  background-size: cover;
   border-radius: 50%;
   border: solid 3px #eece1a;
 }
@@ -102,19 +113,19 @@
   color: #eece1a;
 }
 
-.nav-item:nth-child(1) {
+.nav-item.show:nth-child(1) {
   transition-delay: 0.1s;
 }
 
-.nav-item:nth-child(2) {
+.nav-item.show:nth-child(2) {
   transition-delay: 0.2s;
 }
 
-.nav-item:nth-child(3) {
+.nav-item.show:nth-child(3) {
   transition-delay: 0.3s;
 }
 
-.nav-item:nth-child(4) {
+.nav-item.show:nth-child(4) {
   transition-delay: 0.4s;
 }
 
@@ -152,6 +163,11 @@ h2,
 h3 {
   margin: 0;
   font-weight: 400;
+  /*& symbol means additional formatting applied to whatever outer element is defined in the scss here (in this case h1,2, and 3) 
+  bearing the class following the '.' (in this case lg-heading).
+  Nesting an & symbol allows us to apply any css styling alraedy defined outside the 
+  & symbol scope and then apply additional formatting to any elmenent that bears the specified class name for that element 
+  (sort of like an inheritance structure)*/
   /*rem is multiplier of html tag's font size 
   (defualt is 16 pixels unless set otherwise so 6rem = 16*6 = 96 pixels)*/
 }
@@ -164,7 +180,7 @@ h1.sm-heading,
 h2.sm-heading,
 h3.sm-heading {
   margin-bottom: 2rem;
-  padding: 0.2rgba #494949, 0.5;
+  padding: 0.2rem 1rem;
 }
 
 a {
@@ -173,7 +189,11 @@ a {
 }
 
 header {
+  /*want header element to always remain at top of screen even during scrolling
+  becuase it contains menu button that opens site nav and users should always have access to it*/
   position: fixed;
+  /* want header to also always remain in front of other html elements even during scrolling so that
+  it doesnt accidentally get hiddne*/
   z-index: 2;
   width: 100%;
 }
@@ -189,6 +209,7 @@ main {
 }
 main .icons {
   margin-top: 1rem;
+  padding-left: 0.2rem;
 }
 main .icons a {
   padding: 0.4rem;
@@ -213,6 +234,8 @@ main#home h1 {
 }
 .about-info .bio-image {
   grid-area: bioimage;
+  width: 70%;
+  height: 75%;
   margin: auto;
   border-radius: 50%;
   border: #eece1a 3px solid;
@@ -220,6 +243,9 @@ main#home h1 {
 .about-info .bio {
   grid-area: bio;
   font-size: 1.5rem;
+}
+.about-info .bio p {
+  font-size: 1.2rem;
 }
 .about-info .job-1 {
   grid-area: job1;
@@ -421,6 +447,8 @@ main#home h1 {
   }
   ul.menu-nav,
   div.menu-branding {
+    /* eleminate left float and set width to 100% so that, in menu overlay, appears above 
+    and navigation appears below */
     float: none;
     width: 100%;
     min-height: 0;
@@ -434,14 +462,22 @@ main#home h1 {
     transform: translate3d(-100%, 0, 0);
     font-size: 24px;
   }
+  .menu-nav .nav-item {
+    transform: translate3d(0, 600px, 0);
+  }
+  .menu-nav .nav-item.show {
+    transform: translate3d(0, 0, 0);
+  }
   .menu-branding {
     height: 25vh;
     transform: translate3d(100%, 0, 0);
   }
   .menu-branding .portrait {
-    background: url(../img/portrait_small.jpg);
     width: 150px;
     height: 150px;
+    background: url("../img/portrait_small.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   .about-info {
     grid-template-areas: "bioimage" "bio" "job1" "job2" "job3";

@@ -129,6 +129,22 @@ This means its possible for them to stack (a device which triggers mediaSm will 
   transition-delay: 0.4s;
 }
 
+.nav-item:nth-child(4) {
+  transition-delay: 0s;
+}
+
+.nav-item:nth-child(3) {
+  transition-delay: 0.1s;
+}
+
+.nav-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.nav-item:nth-child(1) {
+  transition-delay: 0.3s;
+}
+
 /* The '*' simply means apply to all html elements*/
 * {
   box-sizing: border-box;
@@ -468,9 +484,11 @@ main#home h1 {
     transform: translate3d(100%, 0, 0);
   }
   .menu-branding .portrait {
-    background: url(../img/portrait_small.jpg);
     width: 150px;
     height: 150px;
+    background: url("../img/portrait_small.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   .about-info {
     grid-template-areas: "bioimage" "bio" "job1" "job2" "job3";

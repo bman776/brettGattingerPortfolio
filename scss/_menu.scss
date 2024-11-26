@@ -64,6 +64,8 @@
         align-items: center;
         //align child elements vertically at center along main axis     
         justify-content: center;
+        // float to left of parent container (allow succeeding elements to wrap to the right)
+        // (left float combined with 50% width is how we get the appeareance of menu overaly to split in half between navigation and the portrait side)
         float: left;
         // width set to half of parent container
         width: 50%;     
@@ -151,9 +153,16 @@
     }
 }
 
-// Delay each nav-item slide by 0.1 seconds
+// Delay each nav-item entry slide by 0.1 seconds 
 @for $x from 1 through 4 {
-    .nav-item:nth-child(#{$x}) {
+    .nav-item.show:nth-child(#{$x}) {
         transition-delay: $x * 0.1s;
+    }
+}
+
+// Delay each nav-item exit slide by 0.1 seconds
+@for $x from 4 through 1 {
+    .nav-item:nth-child(#{$x}) {
+        transition-delay: (5 - $x-1) * 0.1s;
     }
 }

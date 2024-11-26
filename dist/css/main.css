@@ -1,4 +1,8 @@
 /*remember: workspace settings have sass compiling .css file to the /dist/css folder! */
+/* 
+Remember: These mixins are based on minimum and maximum screen widths of the devices accessing portfolio
+This means its possible for them to stack (a device which triggers mediaSm will also trigger mediaMd)
+*/
 .menu-btn {
   position: absolute;
   z-index: 3;
@@ -109,19 +113,19 @@
   color: #eece1a;
 }
 
-.nav-item:nth-child(1) {
+.nav-item.show:nth-child(1) {
   transition-delay: 0.1s;
 }
 
-.nav-item:nth-child(2) {
+.nav-item.show:nth-child(2) {
   transition-delay: 0.2s;
 }
 
-.nav-item:nth-child(3) {
+.nav-item.show:nth-child(3) {
   transition-delay: 0.3s;
 }
 
-.nav-item:nth-child(4) {
+.nav-item.show:nth-child(4) {
   transition-delay: 0.4s;
 }
 
@@ -438,6 +442,8 @@ main#home h1 {
   }
   ul.menu-nav,
   div.menu-branding {
+    /* eleminate left float and set width to 100% so that, in menu overlay, appears above 
+    and navigation appears below */
     float: none;
     width: 100%;
     min-height: 0;
@@ -450,6 +456,12 @@ main#home h1 {
     height: 75vh;
     transform: translate3d(-100%, 0, 0);
     font-size: 24px;
+  }
+  .menu-nav .nav-item {
+    transform: translate3d(0, 600px, 0);
+  }
+  .menu-nav .nav-item.show {
+    transform: translate3d(0, 0, 0);
   }
   .menu-branding {
     height: 25vh;

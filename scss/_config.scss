@@ -46,10 +46,16 @@ $main-footer-height: 60px;
 }
 
 //Media Query Mixins
+/* 
+Remember: These mixins are based on minimum and maximum screen widths of the devices accessing portfolio
+This means its possible for them to stack (a device which triggers mediaSm will also trigger mediaMd)
+*/
+
 // Media small
 @mixin mediaSm {
     //media query
     @media screen and (max-width:500px) { //apply following css only if screen width is <= 500 px
+        //@ content here means that we can specifiy what styling this mixin affects when called with @include 
         @content;
     }
 }
@@ -57,7 +63,7 @@ $main-footer-height: 60px;
 // Media medium
 @mixin mediaMd {
     //media query
-    @media screen and (max-width:768px) { //apply following css only if screen width is <= 500 px
+    @media screen and (max-width:768px) { //apply following css only if screen width is <= 768 px
         @content;
     }
 }
